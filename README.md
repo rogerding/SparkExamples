@@ -35,6 +35,7 @@ SQL> select * from dept;
 
 # Running Environment: #
 Cloudera QuickStart VM for CDH 5.1.x
+
 [http://www.cloudera.com/content/cloudera/en/downloads/quickstart_vms/cdh-5-1-x1.html](http://www.cloudera.com/content/cloudera/en/downloads/quickstart_vms/cdh-5-1-x1.html "Cloudera QuickStart VM for CDH 5.1.x")
 
 # Exercise: #
