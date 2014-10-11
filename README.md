@@ -33,6 +33,9 @@ SQL> select * from dept;
         40 OPERATIONS     BOSTON
         
 
+# Running Environment: #
+Cloudera QuickStart VM for CDH 5.1.x
+[http://www.cloudera.com/content/cloudera/en/downloads/quickstart_vms/cdh-5-1-x1.html](http://www.cloudera.com/content/cloudera/en/downloads/quickstart_vms/cdh-5-1-x1.html "Cloudera QuickStart VM for CDH 5.1.x")
 
 # Exercise: #
 
@@ -103,7 +106,7 @@ hdfs://quickstart.cloudera:8020/user/cloudera/data/emp/dept.txt
      same dept, find the number of inter-person required for communicates between any 2 person
     
 
-### Run MapReduce program ###
+### Run Spark program ### (Run as user hdfs, otherwise you will get permission error)
 01 	
 	
     spark-submit --master spark://quickstart.cloudera:7077 --class SparkExamples.Query01 /home/cloudera/IdeaProjects/SparkExamples/target/SparkExamples-1.0-SNAPSHOT.jar hdfs://quickstart.cloudera:8020/user/cloudera/data/emp/spark-result/out-01
