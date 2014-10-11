@@ -27,8 +27,21 @@ SQL> select * from dept;
         30 SALES          CHICAGO
         40 OPERATIONS     BOSTON
 
+Git:
+
+git init
+git add .
+git commit -m "first commit"
+git remote add origin git@github.com:rogerding/SparkExamples.git
+git push -u origin master
+
 Exercise:
-Import the data into hadoop
+
+Import the data into HDFS (2 files).
+hdfs://quickstart.cloudera:8020/user/cloudera/data/emp/emp.txt
+hdfs://quickstart.cloudera:8020/user/cloudera/data/emp/dept.txt
+
+
 Write Spark program to:
 (1) list total salary for each dept.
 (2) list total number of employee and average salary for each dept.
