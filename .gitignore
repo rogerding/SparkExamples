@@ -1,0 +1,3 @@
+# Ignore target directory
+target
+.idea
