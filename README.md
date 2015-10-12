@@ -1,30 +1,36 @@
 SparkExamples
 ==========
 
-There are 2 tables:
+There are 2 tables: emp and dept
 
-CREATE DATABASE IF NOT EXISTS emp;
 
-CREATE TABLE IF NOT EXISTS emp(EMPNO INT, ENAME STRING, JOB STRING, MGR INT, HIREDATE STRING, SAL INT, COMM INT, DEPTNO INT) 
-  ROW FORMAT
-  DELIMITED FIELDS TERMINATED BY ','
-  LINES TERMINATED BY '\n'
-  STORED AS TEXTFILE;
+    CREATE DATABASE IF NOT EXISTS emp;
 
-CREATE TABLE IF NOT EXISTS dept(DEPTNO INT, DNAME STRING, LOC STRING) 
-  ROW FORMAT
-  DELIMITED FIELDS TERMINATED BY ','
-  LINES TERMINATED BY '\n'
-  STORED AS TEXTFILE;
+    CREATE TABLE IF NOT EXISTS emp(EMPNO INT, ENAME STRING, JOB STRING, MGR INT, HIREDATE STRING, SAL INT, COMM INT, DEPTNO INT) 
+      ROW FORMAT
+      DELIMITED FIELDS TERMINATED BY ','
+      LINES TERMINATED BY '\n'
+      STORED AS TEXTFILE;
 
-LOAD DATA local INPATH 'emp.txt' INTO TABLE emp;
-LOAD DATA local INPATH 'dept.txt' INTO TABLE dept;
+    CREATE TABLE IF NOT EXISTS dept(DEPTNO INT, DNAME STRING, LOC STRING) 
+      ROW FORMAT
+      DELIMITED FIELDS TERMINATED BY ','
+      LINES TERMINATED BY '\n'
+      STORED AS TEXTFILE;
 
-CREATE TABLE IF NOT EXISTS emp_parquet LIKE emp STORED AS PARQUET;
-CREATE TABLE IF NOT EXISTS dept_parquet LIKE dept STORED AS PARQUET;
+    LOAD DATA local INPATH 'emp.txt' INTO TABLE emp;
+    LOAD DATA local INPATH 'dept.txt' INTO TABLE dept;
 
-insert overwrite table emp_parquet select * from emp;
-insert overwrite table dept_parquet select * from dept;
+    CREATE TABLE IF NOT EXISTS emp_parquet LIKE emp STORED AS PARQUET;
+
+    CREATE TABLE IF NOT EXISTS dept_parquet LIKE dept STORED AS PARQUET;
+
+    insert overwrite table emp_parquet select * from emp;
+
+    insert overwrite table dept_parquet select * from dept;
+
+
+
 
 SQL> select * from emp;
      
