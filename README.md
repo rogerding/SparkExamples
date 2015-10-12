@@ -3,6 +3,29 @@ SparkExamples
 
 There are 2 tables:
 
+CREATE DATABASE IF NOT EXISTS emp;
+
+CREATE TABLE IF NOT EXISTS emp(EMPNO INT, ENAME STRING, JOB STRING, MGR INT, HIREDATE STRING, SAL INT, COMM INT, DEPTNO INT) 
+  ROW FORMAT
+  DELIMITED FIELDS TERMINATED BY ','
+  LINES TERMINATED BY '\n'
+  STORED AS TEXTFILE;
+
+CREATE TABLE IF NOT EXISTS dept(DEPTNO INT, DNAME STRING, LOC STRING) 
+  ROW FORMAT
+  DELIMITED FIELDS TERMINATED BY ','
+  LINES TERMINATED BY '\n'
+  STORED AS TEXTFILE;
+
+LOAD DATA local INPATH 'emp.txt' INTO TABLE emp;
+LOAD DATA local INPATH 'dept.txt' INTO TABLE dept;
+
+CREATE TABLE IF NOT EXISTS emp_parquet LIKE emp STORED AS PARQUET;
+CREATE TABLE IF NOT EXISTS dept_parquet LIKE dept STORED AS PARQUET;
+
+insert overwrite table emp_parquet select * from emp;
+insert overwrite table dept_parquet select * from dept;
+
 SQL> select * from emp;
      
     EMPNO ENAME       JOB        MGR   HIREDATE     SAL    COMM   DEPTNO
@@ -15,7 +38,7 @@ SQL> select * from emp;
     7654, MARTIN,     SALESMAN,  7698, 1981-09-28,  1250,  1400,  30
     7698, BLAKE,      MANAGER,   7839, 1981-05-01,  2850,     0,  30
     7782, CLARK,      MANAGER,   7839, 1981-06-09,  2450,     0,  10
-    7839, KING,       PRESIDENT,     , 1981-11-17,  5000,     0,  10
+    7839, KING,       PRESIDENT, NULL, 1981-11-17,  5000,     0,  10
     7844, TURNER,     SALESMAN,  7698, 1981-09-08,  1500,     0,  30
     7900, JAMES,      CLERK,     7698, 1981-12-03,   950,     0,  30
     7902, FORD,       ANALYST,   7566, 1981-12-03,  3000,     0,  20
@@ -34,9 +57,9 @@ SQL> select * from dept;
         
 
 # Running Environment: #
-Cloudera QuickStart VM for CDH 5.1.x
+Cloudera QuickStart VM for CDH 5.4.x
 
-[http://www.cloudera.com/content/cloudera/en/downloads/quickstart_vms/cdh-5-1-x1.html](http://www.cloudera.com/content/cloudera/en/downloads/quickstart_vms/cdh-5-1-x1.html "Cloudera QuickStart VM for CDH 5.1.x")
+[http://www.cloudera.com/content/cloudera/en/downloads/quickstart_vms/cdh-5-4-x.html](http://www.cloudera.com/content/cloudera/en/downloads/quickstart_vms/cdh-5-4-x.html "Cloudera QuickStart VM for CDH 5.4.x")
 
 # Exercise: #
 
@@ -66,7 +89,7 @@ hdfs://quickstart.cloudera:8020/user/cloudera/data/emp/dept.txt
 
 (3) list the first hired employee's name for each dept.
 
-	select e.deptno, e.ename, e.hiredate from (select deptno, min(hiredate) as mindate from emp group by deptno) a join emp e on e.hiredate=a.mindate AND e.deptno=a.deptno;
+	select e.deptno, e.ename, e.hiredate from (select deptno, min(cast(hiredate as date)) as mindate from emp group by deptno) a join emp e on e.hiredate=a.mindate AND e.deptno=a.deptno;
 
 	select e.deptno, e.ename, e.hiredate from (select deptno, min(hiredate) as mindate from emp group by deptno) a, emp e where e.hiredate=a.mindate AND e.deptno=a.deptno;
 
@@ -130,20 +153,20 @@ hdfs://quickstart.cloudera:8020/user/cloudera/data/emp/dept.txt
 
 06 
 
-    spark-submit --master spark://quickstart.cloudera:7077 --class SparkExamples.Query05 /home/cloudera/IdeaProjects/SparkExamples/target/SparkExamples-1.0-SNAPSHOT.jar hdfs://quickstart.cloudera:8020/user/cloudera/data/emp/spark-result/out-06
+    spark-submit --master spark://quickstart.cloudera:7077 --class SparkExamples.Query06 /home/cloudera/IdeaProjects/SparkExamples/target/SparkExamples-1.0-SNAPSHOT.jar hdfs://quickstart.cloudera:8020/user/cloudera/data/emp/spark-result/out-06
 
 07
 
-    spark-submit --master spark://quickstart.cloudera:7077 --class SparkExamples.Query05 /home/cloudera/IdeaProjects/SparkExamples/target/SparkExamples-1.0-SNAPSHOT.jar hdfs://quickstart.cloudera:8020/user/cloudera/data/emp/spark-result/out-07
+    spark-submit --master spark://quickstart.cloudera:7077 --class SparkExamples.Query07 /home/cloudera/IdeaProjects/SparkExamples/target/SparkExamples-1.0-SNAPSHOT.jar hdfs://quickstart.cloudera:8020/user/cloudera/data/emp/spark-result/out-07
 
 08
 
-    spark-submit --master spark://quickstart.cloudera:7077 --class SparkExamples.Query05 /home/cloudera/IdeaProjects/SparkExamples/target/SparkExamples-1.0-SNAPSHOT.jar hdfs://quickstart.cloudera:8020/user/cloudera/data/emp/spark-result/out-08
+    spark-submit --master spark://quickstart.cloudera:7077 --class SparkExamples.Query08 /home/cloudera/IdeaProjects/SparkExamples/target/SparkExamples-1.0-SNAPSHOT.jar hdfs://quickstart.cloudera:8020/user/cloudera/data/emp/spark-result/out-08
 
 09
 
-    spark-submit --master spark://quickstart.cloudera:7077 --class SparkExamples.Query05 /home/cloudera/IdeaProjects/SparkExamples/target/SparkExamples-1.0-SNAPSHOT.jar hdfs://quickstart.cloudera:8020/user/cloudera/data/emp/spark-result/out-09
+    spark-submit --master spark://quickstart.cloudera:7077 --class SparkExamples.Query09 /home/cloudera/IdeaProjects/SparkExamples/target/SparkExamples-1.0-SNAPSHOT.jar hdfs://quickstart.cloudera:8020/user/cloudera/data/emp/spark-result/out-09
 
 10
 
-    spark-submit --master spark://quickstart.cloudera:7077 --class SparkExamples.Query05 /home/cloudera/IdeaProjects/SparkExamples/target/SparkExamples-1.0-SNAPSHOT.jar hdfs://quickstart.cloudera:8020/user/cloudera/data/emp/spark-result/out-10
+    spark-submit --master spark://quickstart.cloudera:7077 --class SparkExamples.Query10 /home/cloudera/IdeaProjects/SparkExamples/target/SparkExamples-1.0-SNAPSHOT.jar hdfs://quickstart.cloudera:8020/user/cloudera/data/emp/spark-result/out-10
