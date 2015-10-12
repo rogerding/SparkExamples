@@ -99,18 +99,18 @@
       </dependency>
 
 
-<!--
       <dependency>
           <groupId>org.apache.spark</groupId>
           <artifactId>spark-hive_2.10</artifactId>
           <version>${CDH_VERSION}</version>
       </dependency>
 
-      <dependency>
-          <groupId>com.databricks</groupId>
-          <artifactId>spark-csv_2.10</artifactId>
-          <version>1.2.0</version>
-      </dependency>
--->
+      <!--
+            <dependency>
+                <groupId>com.databricks</groupId>
+                <artifactId>spark-csv_2.10</artifactId>
+                <version>1.2.0</version>
+            </dependency>
+      -->
   </dependencies>
 </project>
