@@ -63,6 +63,19 @@ hdfs://quickstart.cloudera:8020/user/cloudera/data/emp/dept.txt
 output:
 /home/cloudera/IdeaProjects/SparkExamples/target/SparkExamples-1.0-SNAPSHOT.jar
 
+=============================   NON CDH   ========================================
+// start hdfs, yarn(optional)
+$ /app/hadoop/hadoop220/sbin/start-dfs.sh
+$ /app/hadoop/hadoop220/sbin/start-yarn.sh
+
+http://quickstart.cloudera:50070/dfshealth.jsp
+
+
+// start spark
+$ /app/hadoop/spark100/sbin/start-all.sh
+
+http://localhost:8080
+==================================================================================
 
 $ spark-submit --master spark://quickstart.cloudera:7077
                --class SparkExamples.Query01
@@ -79,6 +92,17 @@ spark-submit --master spark://quickstart.cloudera:7077 --class SparkExamples.Que
 spark-submit --master spark://quickstart.cloudera:7077 --class SparkExamples.Query05 /home/cloudera/IdeaProjects/SparkExamples/target/SparkExamples-1.0-SNAPSHOT.jar hdfs://quickstart.cloudera:8020/user/cloudera/data/emp/spark-result/out-05
 
 spark-submit --master spark://quickstart.cloudera:7077 --class SparkExamples.Query10 /home/cloudera/IdeaProjects/SparkExamples/target/SparkExamples-1.0-SNAPSHOT.jar hdfs://quickstart.cloudera:8020/user/cloudera/data/emp/spark-result/out-10
+
+
+spark.cores.max
+
+// In Yarn client mode
+spark-submit --master yarn --deploy-mode client  --class SparkExamples.Query01 /home/cloudera/IdeaProjects/SparkExamples/target/SparkExamples-1.0-SNAPSHOT.jar hdfs://quickstart.cloudera:8020/user/cloudera/data/emp/spark-result/out-02
+
+// In Yarn cluster mode
+spark-submit --master yarn --deploy-mode cluster --class SparkExamples.Query01 /home/cloudera/IdeaProjects/SparkExamples/target/SparkExamples-1.0-SNAPSHOT.jar hdfs://quickstart.cloudera:8020/user/cloudera/data/emp/spark-result/out-02
+
+
 
 // combine output(part-00000, part-00001) to one file
 
