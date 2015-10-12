@@ -14,7 +14,6 @@ import java.util.List;
 /**
  * Created by rding on 10/10/15.
  * (9) sort employee by total income (salary+comm), list name and total income.
-
  */
 public class Query09 {
     static String file_1 = "hdfs://quickstart.cloudera:8020/user/cloudera/data/emp/emp.txt";

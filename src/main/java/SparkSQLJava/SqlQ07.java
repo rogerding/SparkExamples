@@ -9,6 +9,7 @@ import org.apache.spark.sql.SQLContext;
 
 /**
  * Created by rding on 10/11/15.
+ * (7) list employee's name and dept name whose name start with "J"
  */
 public class SqlQ07 {
 

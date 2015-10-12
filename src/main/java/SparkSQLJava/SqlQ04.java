@@ -9,6 +9,7 @@ import org.apache.spark.sql.SQLContext;
 
 /**
  * Created by rding on 10/11/15.
+ * (4) list total employee salary for each city.
  */
 public class SqlQ04 {
 

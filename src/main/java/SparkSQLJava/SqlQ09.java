@@ -9,6 +9,7 @@ import org.apache.spark.sql.SQLContext;
 
 /**
  * Created by rding on 10/11/15.
+ * (9) sort employee by total income (salary+comm), list name and total income.
  */
 public class SqlQ09 {
 

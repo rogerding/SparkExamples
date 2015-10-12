@@ -9,6 +9,7 @@ import org.apache.spark.sql.SQLContext;
 
 /**
  * Created by rding on 10/11/15.
+ * (2) list total number of employee and average salary for each dept.
  */
 public class SqlQ02 {
 

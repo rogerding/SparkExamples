@@ -11,8 +11,7 @@ import scala.Tuple3;
 
 /**
  * Created by rding on 10/10/15.
- *  * (6) list employee's name and salary whose salary is higher than average salary of whole company
-
+ * (6) list employee's name and salary whose salary is higher than average salary of whole company
  */
 public class Query06 {
     static String file_1 = "hdfs://quickstart.cloudera:8020/user/cloudera/data/emp/emp.txt";

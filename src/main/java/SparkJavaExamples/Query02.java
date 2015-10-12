@@ -11,6 +11,7 @@ import scala.Tuple2;
 
 /**
  * Created by rding on 10/10/15.
+ * (2) list total number of employee and average salary for each dept.
  */
 public class Query02 {
     static String file_1 = "hdfs://quickstart.cloudera:8020/user/cloudera/data/emp/emp.txt";

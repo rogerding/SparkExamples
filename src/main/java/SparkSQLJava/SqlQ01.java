@@ -10,6 +10,7 @@ import org.apache.spark.sql.SQLContext;
 
 /**
  * Created by rding on 10/11/15.
+ * (1) list total salary for each dept.
  */
 public class SqlQ01 {
 
@@ -30,6 +31,12 @@ public class SqlQ01 {
         String outPath = args[0];
 
         SparkConf sparkConf = new SparkConf().setAppName("Java-SqlQuery-01");
+        // Performance tuning parameters
+        sparkConf.set("spark.sql.codegen", "true"); // default is false
+        sparkConf.set("spark.sql.inMemoryColumnarStorage.compressed", "true"); // default is false
+        sparkConf.set("spark.sql.inMemoryColumnarStorage.batchSize", "500"); // default is 1000
+        sparkConf.set("spark.sql.parquet.compression.codec", "snappy"); // default is snappy, unconmpressed, gzip, lzo
+
         JavaSparkContext sc = new JavaSparkContext(sparkConf);
 
         SQLContext sqlContext = new SQLContext(sc);
@@ -52,6 +59,16 @@ public class SqlQ01 {
 //        System.out.println("rowRdd's partition number = " + rowRdd.partitions().size());
 
         // coalesce(numPartitions : scala.Int, shuffle : scala.Boolean)
+        /*
+        shuffle = false will merge partitions together, withOUT doing a more expensive shuffle operation.
+        Each result partition just reads from a few of the input partitions
+
+        shuffle = true, you trigger a full shuffle of the data, where each result partition depends on all input partitions.
+        Its more expensive, but the advantages are:
+        (a) if you want to increase the number of partitions, you have to do a shuffle
+        (b) if some of your partitions are bigger (data skew) you might want to shuffle to balance them out more and
+        (c) maybe you want to do the shuffle so the data is grouped, eg. for a subsequent join
+         */
         JavaRDD<Row> rowRdd_co = rowRdd.coalesce(num_partition, false); // repartition to 1
 //        System.out.println("rowRdd_co's partition number = " + rowRdd_co.partitions().size());
 

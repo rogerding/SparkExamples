@@ -9,6 +9,7 @@ import org.apache.spark.sql.SQLContext;
 
 /**
  * Created by rding on 10/11/15.
+ * (6) list employee's name and salary whose salary is higher than average salary of whole company
  */
 public class SqlQ06 {
 

@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  * Created by rding on 10/10/15.
- * list employee's name and salary whose salary is higher than their manager
+ * (5) list employee's name and salary whose salary is higher than their manager
  * SELECT e.ename, e.sal FROM emp e JOIN emp e2 ON e.mgr = e2.empno WHERE e.sal > e2.sal;
  */
 public class Query05 {

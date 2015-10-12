@@ -13,7 +13,6 @@ import java.util.List;
 /**
  * Created by rding on 10/10/15.
  * (8) list 3 employee's name and salary with highest salary
-
  */
 public class Query08 {
     static String file_1 = "hdfs://quickstart.cloudera:8020/user/cloudera/data/emp/emp.txt";

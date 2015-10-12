@@ -14,7 +14,6 @@ import scala.Tuple3;
 /**
  * Created by rding on 10/10/15.
  * (7) list employee's name and dept name whose name start with "J"
-
  */
 public class Query07 {
     static String file_1 = "hdfs://quickstart.cloudera:8020/user/cloudera/data/emp/emp.txt";

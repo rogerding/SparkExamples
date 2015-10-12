@@ -9,6 +9,7 @@ import org.apache.spark.sql.SQLContext;
 
 /**
  * Created by rding on 10/11/15.
+ * (3) list the first hired employee's name for each dept.
  */
 public class SqlQ03 {
 

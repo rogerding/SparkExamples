@@ -11,6 +11,7 @@ import scala.Tuple2;
 
 /**
  * Created by rding on 10/10/15.
+ * (3) list the first hired employee's name for each dept.
  */
 public class Query03 {
     static String file_1 = "hdfs://quickstart.cloudera:8020/user/cloudera/data/emp/emp.txt";
