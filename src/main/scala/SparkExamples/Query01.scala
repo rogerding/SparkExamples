@@ -104,5 +104,5 @@ spark-submit --master spark://quickstart.cloudera:7077
 hdfs://quickstart.cloudera:8020/user/cloudera/data/emp/emp.txt 2
 
 
-spark-submit --master spark://quickstart.cloudera:7077 /home/cloudera/IdeaProjects/SparkExamples/target/SparkExamples-1.0-SNAPSHOT.jar --class com.cloudera.sparkwordcount.SparkWordCount  --executor-memory 256m hdfs://quickstart.cloudera:8020/user/cloudera/data/emp/emp.txt 2
+spark-submit --master spark://quickstart.cloudera:7077 /home/cloudera/IdeaProjects/SparkExamples/target/SparkExamples-1.0-SNAPSHOT.jar --class SparkExamples.Query01  --executor-memory 256m hdfs://quickstart.cloudera:8020/user/cloudera/data/emp/emp.txt 2
 */
